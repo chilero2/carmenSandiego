@@ -1,4 +1,6 @@
-class Escuela {
+import { Profesor } from "./Profesor.js";
+
+export class Escuela {
     constructor(nombre, localidad, director) {
         this.nombre = nombre;
         this.localidad = localidad;

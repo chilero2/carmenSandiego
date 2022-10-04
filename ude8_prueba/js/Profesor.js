@@ -1,13 +1,23 @@
-const tipo = {
-    CIENCIAS, LETRAS, MIXTO        
-}
+import { Escuela } from "./Escuela.js";
 
 class Profesor {
-
-
-
+    tipos = ['mixto', 'ciencias', 'letras'];
+    
     constructor(nombre, tipo) {
-        this.nombre = nombre;
+        if (!this.tipos.includes(tipo)) {
+            throw 'Error: tipo de profesor';
+        }
         this.tipo = tipo;
+        this.nombre = nombre;    
     }
+
+    visualizacion() {
+        return 
+    }
+
+
+    
+
+    
+
 }
