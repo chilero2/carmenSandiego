@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-
+  </head>
+  <body>
     <h1>Colegio</h1>
 
+    <div class="buttons">
+      <button id="show">Mostrar datos</button>
+      <select name="opciones" id="opciones">
+        <option value="Escuela">Escuela</option>
+        <option value="Profesor">Profesor</option>
+        <option value="Alumno">Alumno</option>
+      </select>
+      <button id="crear">Crear...</button>
+      <button id="borrar">Borrar...</button>
+      <button id="modificar">Modificar...</button>
+    </div>
 
-    <script src="js/scripts.js"></script>
-    
-</body>
+    <div class="box" id="box"></div>
+
+    <script type="module" src="js/scripts.js"></script>
+  </body>
 </html>
