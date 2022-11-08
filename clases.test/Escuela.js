@@ -1,5 +1,7 @@
+/* eslint-disable space-before-function-paren */
+const Profesor = require('./Profesor.js')
 class Escuela {
-  constructor (nombre, localidad, director) {
+  constructor(nombre, localidad, director) {
     this.nombre = nombre
     this.localidad = localidad
     this.director = director
@@ -8,15 +10,15 @@ class Escuela {
 
   // Métodos GET
 
-  getProfesores () {
+  getProfesores() {
     return [...this.profesores]
   }
 
-  getNombre () {
+  getNombre() {
     return this.nombre
   }
 
-  getAlumnos () {
+  getAlumnos() {
     const alumnos = []
     for (const profesor of this.profesores) {
       alumnos.push(...profesor.getAlumnos())
@@ -24,7 +26,7 @@ class Escuela {
     return alumnos
   }
 
-  getProfesorDelAlumno (alumno) {
+  getProfesorDelAlumno(alumno) {
     for (const profesor of this.profesores) {
       if (profesor.esTutor(alumno)) {
         return profesor
@@ -34,7 +36,7 @@ class Escuela {
 
   // Métodos selección
 
-  seleccionaProfesor (nombre) {
+  seleccionaProfesor(nombre) {
     for (const profesor of this.profesores) {
       if (profesor.nombre === nombre) {
         return profesor
@@ -43,11 +45,11 @@ class Escuela {
     return false
   }
 
-  trabajaAqui (profesor) {
+  trabajaAqui(profesor) {
     return this.profesores.has(profesor)
   }
 
-  seleccionaAlumno (alumno) {
+  seleccionaAlumno(alumno) {
     for (const profesor of this.profesores) {
       if (profesor.seleccionaAlumno(alumno)) {
         return profesor.seleccionaAlumno(alumno)
@@ -55,7 +57,7 @@ class Escuela {
     }
   }
 
-  estudiaAqui (alumno) {
+  estudiaAqui(alumno) {
     for (const profesor of this.profesores) {
       if (profesor.esTutor(alumno)) {
         return true
@@ -66,18 +68,21 @@ class Escuela {
   // Métodos modificación
 
   // Inserta profesores a la escuela
-  anyadeProfesor (profesor) {
-    this.profesores.add(profesor)
-    profesor.setEscuela(this.nombre)
+  anyadeProfesor(profesor) {
+    if (profesor instanceof Profesor) {
+      profesor.setEscuela(this.nombre)
+      return this.profesores.add(profesor)
+    }
+    return false
   }
 
   // Borrar profesor
-  borraProfesor (profesor) {
+  borraProfesor(profesor) {
     this.profesores.delete(profesor)
   }
 
   // Borra Alumno
-  borraAlumno (alumno) {
+  borraAlumno(alumno) {
     for (const profesor of this.profesores) {
       if (profesor.esTutor(alumno)) {
         return profesor.borraAlumno(alumno)

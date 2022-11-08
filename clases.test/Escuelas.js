@@ -1,3 +1,7 @@
+/* eslint-disable space-before-function-paren */
+const Escuela = require('./Escuela.js')
+const Profesor = require('./Profesor.js')
+
 class Escuelas {
   constructor() {
     this.escuelas = new Set()
@@ -37,14 +41,18 @@ class Escuelas {
         return escuela
       }
     }
+    return false
   }
 
   seleccionaProfesor(profesor) {
-    for (const escuela of this.escuelas) {
-      if (escuela.seleccionaProfesor(profesor)) {
-        return escuela.seleccionaProfesor(profesor)
+    if (profesor instanceof Profesor) {
+      for (const escuela of this.escuelas) {
+        if (escuela.seleccionaProfesor(profesor)) {
+          return escuela.seleccionaProfesor(profesor)
+        }
       }
     }
+    return false
   }
 
   seleccionaAlumno(alumno) {
@@ -58,11 +66,14 @@ class Escuelas {
   // Métodos modificación
 
   anyadeEscuela(escuela) {
-    this.escuelas.add(escuela)
+    if (escuela instanceof Escuela) {
+      return this.escuelas.add(escuela)
+    }
+    return false
   }
 
   eliminaEscuela(escuela) {
-    this.escuelas.delete(escuela)
+    return this.escuelas.delete(escuela)
   }
 
   eliminaProfesor(profesor) {
