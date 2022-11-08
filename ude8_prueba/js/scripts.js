@@ -13,17 +13,21 @@ const borrar = document.getElementById('borrar')
 const modificar = document.getElementById('modificar')
 
 // FUNCIONES
+
+// Limpia la pantalla
 const limpiarPantalla = () => {
   while (box.firstChild) {
     box.removeChild(box.firstChild)
   }
 }
 
+// Muestra los datos
 const mostrarDatos = () => {
   limpiarPantalla()
   box.append(escuelas.mostrarEscuelas())
 }
 
+// Crea una nueva escuela / profesor / alumno
 const crearItem = () => {
   limpiarPantalla()
   const clase = opcion.value
@@ -50,6 +54,7 @@ const crearItem = () => {
   })
 }
 
+// Elimina la escuela / profesor / alumno seleccionado
 const borrarItem = () => {
   limpiarPantalla()
   const clase = opcion.value
@@ -74,6 +79,7 @@ const borrarItem = () => {
   })
 }
 
+// Actualizar la escuela / profesor / alumno seleccionado
 const modificarItem = () => {
   limpiarPantalla()
   const clase = opcion.value

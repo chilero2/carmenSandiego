@@ -1,0 +1,29 @@
+{
+  "name": "carmensandiego",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./Escuelas.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chilero2/carmenSandiego.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chilero2/carmenSandiego/issues"
+  },
+  "homepage": "https://github.com/chilero2/carmenSandiego#readme",
+  "devDependencies": {
+    "mocha": "^10.1.0"
+  },
+  "dependencies": {
+    "chai": "^4.3.6"
+  }
+}
