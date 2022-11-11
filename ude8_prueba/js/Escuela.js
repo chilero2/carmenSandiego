@@ -3,6 +3,9 @@ import { crearFragmentoHTML } from './funciones.js'
 
 export class Escuela {
   constructor(nombre, localidad, director) {
+    if (nombre === '' || localidad === '' || director === '') {
+      throw Error('Debes rellenar todos los capos')
+    }
     this.nombre = nombre
     this.localidad = localidad
     this.director = director
@@ -68,6 +71,16 @@ export class Escuela {
   anyadeProfesor(profesor) {
     this.profesores.add(profesor)
     profesor.setEscuela(this.nombre)
+  }
+
+  // Modificar datos escuela
+  modificaEscuela(nombre, localidad, director) {
+    if (nombre === '' || localidad === '' || director === '') {
+      throw Error('Se tienen que introducir todos los datos')
+    }
+    this.nombre = nombre
+    this.localidad = localidad
+    this.director = director
   }
 
   // Borrar profesor

@@ -1,6 +1,18 @@
 /* eslint-disable space-before-function-paren */
 export class Alumno {
   constructor(nombre, curso) {
+    if (nombre === '' || curso === '') {
+      throw Error('Debes rellenar todos los cambos')
+    }
+    this.nombre = nombre
+    this.curso = curso
+  }
+
+  // Modificar datos alumno
+  modificarAlumno(nombre, curso) {
+    if (nombre === '' || curso === '') {
+      throw Error('Debe introducir todos los datos del alumno')
+    }
     this.nombre = nombre
     this.curso = curso
   }

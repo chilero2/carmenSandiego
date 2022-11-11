@@ -9,6 +9,9 @@ export class Profesor {
     if (!this.tipos.includes(tipo)) {
       throw Error('Error: tipo de profesor')
     }
+    if (nombre === '') {
+      throw Error('Hay que indicar el nombre del profesor')
+    }
     this.tipo = tipo
     this.nombre = nombre
     this.alumnos = new Set()
@@ -49,6 +52,14 @@ export class Profesor {
       throw Error('Error: este profesor no trabaja')
     }
     this.alumnos.add(alumno)
+  }
+
+  // Modificar nombre
+  setNombre(nombre) {
+    if (nombre === '') {
+      throw Error('Debe introducir un nombre')
+    }
+    this.nombre = nombre
   }
 
   // Borrar alumno

@@ -36,21 +36,29 @@ const crearItem = () => {
   form.addEventListener('submit', e => {
     e.preventDefault()
     const data = Object.fromEntries(new FormData(e.target))
-    if (clase === 'Escuela') {
-      const escuela = new Escuela(data.nombre, data.localidad, data.director)
-      escuelas.anyadeEscuela(escuela)
+    try {
+      if (clase === 'Escuela') {
+        const escuela = new Escuela(
+          data.nombre.trim(),
+          data.localidad.trim(),
+          data.director.trim()
+        )
+        escuelas.anyadeEscuela(escuela)
+      }
+      if (clase === 'Profesor') {
+        const profesor = new Profesor(data.nombre.trim(), data.tipo)
+        const escuela = escuelas.selecionaEscuela(data.profesor_escuela)
+        escuela.anyadeProfesor(profesor)
+      }
+      if (clase === 'Alumno') {
+        const alumno = new Alumno(data.nombre.trim(), data.curso.trim())
+        const profesor = escuelas.seleccionaProfesor(data.alumno_profesor)
+        profesor.anyadeAlumno(alumno)
+      }
+      limpiarPantalla()
+    } catch (error) {
+      alert(error)
     }
-    if (clase === 'Profesor') {
-      const profesor = new Profesor(data.nombre, data.tipo)
-      const escuela = escuelas.selecionaEscuela(data.profesor_escuela)
-      escuela.anyadeProfesor(profesor)
-    }
-    if (clase === 'Alumno') {
-      const alumno = new Alumno(data.nombre, data.curso)
-      const profesor = escuelas.seleccionaProfesor(data.alumno_profesor)
-      profesor.anyadeAlumno(alumno)
-    }
-    limpiarPantalla()
   })
 }
 
@@ -94,12 +102,18 @@ const modificarItem = () => {
       box.append(formularioCrearItem(clase, true, escuela))
       const formActualiza = document.getElementById('formActualiza')
       formActualiza.addEventListener('submit', e => {
-        e.preventDefault()
-        limpiarPantalla()
-        const datas = Object.fromEntries(new FormData(e.target))
-        escuela.nombre = datas.nombre
-        escuela.localidad = datas.localidad
-        escuela.director = datas.director
+        try {
+          e.preventDefault()
+          limpiarPantalla()
+          const datas = Object.fromEntries(new FormData(e.target))
+          escuela.modificaEscuela(
+            datas.nombre.trim(),
+            datas.localidad.trim(),
+            datas.director.trim()
+          )
+        } catch (error) {
+          alert(error)
+        }
       })
     }
     if (clase === 'Profesor') {
@@ -109,11 +123,15 @@ const modificarItem = () => {
       formActualiza.addEventListener('submit', e => {
         e.preventDefault()
         limpiarPantalla()
-        const datas = Object.fromEntries(new FormData(e.target))
-        profesor.nombre = datas.nombre
-        profesor.tipo = datas.tipo
-        const escuela = escuelas.selecionaEscuela(datas.profesor_escuela)
-        escuelas.modificaEscuela(escuela, profesor)
+        try {
+          const datas = Object.fromEntries(new FormData(e.target))
+          profesor.setNombre(datas.nombre.trim())
+          profesor.tipo = datas.tipo
+          const escuela = escuelas.selecionaEscuela(datas.profesor_escuela)
+          escuelas.modificaEscuela(escuela, profesor)
+        } catch (error) {
+          alert(error)
+        }
       })
     }
     if (clase === 'Alumno') {
@@ -121,14 +139,17 @@ const modificarItem = () => {
       box.append(formularioCrearItem(clase, true, alumno))
       const formActualiza = document.getElementById('formActualiza')
       formActualiza.addEventListener('submit', e => {
-        e.preventDefault()
-        limpiarPantalla()
-        const datas = Object.fromEntries(new FormData(e.target))
-        alumno.nombre = datas.nombre
-        alumno.curso = datas.curso
-        const profesor = escuelas.seleccionaProfesor(datas.alumno_profesor)
-        escuelas.eliminaTutorAlumno(alumno)
-        profesor.anyadeAlumno(alumno)
+        try {
+          e.preventDefault()
+          limpiarPantalla()
+          const datas = Object.fromEntries(new FormData(e.target))
+          alumno.modificarAlumno(datas.nombre.trim(), datas.curso.trim())
+          const profesor = escuelas.seleccionaProfesor(datas.alumno_profesor)
+          escuelas.eliminaTutorAlumno(alumno)
+          profesor.anyadeAlumno(alumno)
+        } catch (error) {
+          alert(error)
+        }
       })
     }
   })
